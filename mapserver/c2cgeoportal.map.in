@@ -37,8 +37,6 @@ MAP
     FONTSET "fonts.conf"
     SYMBOLSET "symbols.sym"
 
-    CONFIG "MS_ERRORFILE" "ms_error.log"
-    #DEBUG 5
 
     OUTPUTFORMAT
         NAME jpeg
