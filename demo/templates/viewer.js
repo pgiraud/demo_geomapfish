@@ -4,7 +4,7 @@ Ext.onReady(function() {
      */
     // OpenLayers
     OpenLayers.Number.thousandsSeparator = ' ';
-    OpenLayers.DOTS_PER_INCH = 72;
+    OpenLayers.DOTS_PER_INCH = 2.54 / 100 / 0.00028;
     OpenLayers.ProxyHost = "${request.route_url('ogcproxy')}?url=";
 
     // Ext
@@ -16,6 +16,9 @@ Ext.onReady(function() {
     // Apply same language than on the server side
     OpenLayers.Lang.setCode("${lang}");
     GeoExt.Lang.set("${lang}");
+
+    cgxp.WFS_FEATURE_NS = "http://www.qgis.org/gml";
+    cgxp.LEGEND_INCLUDE_LAYER_NAME = false;
 
     // Server errors (if any)
     var serverError = ${serverError | n};
