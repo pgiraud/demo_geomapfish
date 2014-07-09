@@ -28,13 +28,9 @@ Ext.onReady(function() {
 % endif
     };
 
-% if user and user.role.extent:
-    var INITIAL_EXTENT = ${user.role.json_extent};
-% else:
-    var INITIAL_EXTENT = [-466375.77628413, 5379611.8001185, 1035458.955194, 6573252.433606];
-% endif
-
+    var INITIAL_EXTENT = [112711, 6391638, 1717277, 5792371];
     var RESTRICTED_EXTENT = [-666375.77628413, 3379611.8001185, 1235458.955194, 7573252.433606];
+    var MAP_CENTER = [914994, 6092004];
 
     // Used to transmit event throw the application
     var EVENTS = new Ext.util.Observable();
@@ -172,7 +168,6 @@ Ext.onReady(function() {
             attributeURLs: ${queryer_attribute_urls | n}
         },
 % endif
-% if 'grid' in request.params:
         {
             ptype: "cgxp_featuresgrid",
             id: "featureGrid",
@@ -182,14 +177,6 @@ Ext.onReady(function() {
             events: EVENTS,
             csvIncludeHeader: true
         },
-% else:
-        {
-            ptype: "cgxp_featureswindow",
-            themes: THEMES,
-            events: EVENTS,
-            id: "featuresWindow"
-        },
-% endif
         {
             ptype: "cgxp_mapopacityslider",
             layerTreeId: "layertree",
@@ -204,7 +191,7 @@ Ext.onReady(function() {
         {
             ptype: "cgxp_getfeature",
             mapserverURL: "${request.route_url('mapserverproxy', path='')}",
-            actionTarget: null, //"center.tbar",
+            actionTarget: "center.tbar",
             events: EVENTS,
             themes: THEMES,
             actionTooltip: OpenLayers.i18n('Query the map'),
@@ -257,7 +244,7 @@ Ext.onReady(function() {
             ptype: "cgxp_print",
             toggleGroup: "maptools",
             legendPanelId: "legendPanel",
-            featureProvider: "featuresWindow",
+            featureProvider: "featuresGrid",
             actionTarget: "center.tbar",
             printURL: "${request.route_url('printproxy', path='')}",
             mapserverURL: "${request.route_url('mapserverproxy', path='')}",
@@ -409,8 +396,10 @@ Ext.onReady(function() {
             xtype: 'cgxp_mappanel',
             projection: "EPSG:3857",
             extent: INITIAL_EXTENT,
-            maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
+            //maxExtent: [-20037508.34, -20037508.34, 20037508.34, 20037508.34],
             //restrictedExtent: RESTRICTED_EXTENT,
+            center: MAP_CENTER,
+            zoom: 7,
             stateId: "map",
             projection: new OpenLayers.Projection("EPSG:3857"),
             units: "m",

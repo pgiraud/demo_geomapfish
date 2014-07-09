@@ -1,0 +1,26 @@
+LAYER
+    NAME 'territoire'
+    TYPE POLYGON
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT * FROM main_data.territoire) as foo using unique ogc_fid"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "couverture"
+        "gml_type" "auto"
+        "gml_include_items" ""
+        ${mapserver_layer_metadata}
+    END
+    CLASS
+         NAME "region"
+         STYLE
+            OUTLINECOLOR 110 20 20
+            WIDTH 3
+        END 
+    END
+END

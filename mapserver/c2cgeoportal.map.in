@@ -102,6 +102,10 @@ MAP
     INCLUDE "cg67/transport.map"
     INCLUDE "cg67/administration.map"
 
+    #sigrs
+    INCLUDE "sigrs/documents.map"
+    INCLUDE "sigrs/global.map"
+
     LAYER
       NAME "Departements"
       GROUP "plan"

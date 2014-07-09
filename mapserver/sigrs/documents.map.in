@@ -1,0 +1,95 @@
+LAYER
+    NAME 'regions'
+    TYPE POLYGON
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    #DATA "geom FROM (SELECT * FROM main_data.dp) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    DATA "geomt FROM (SELECT DISTINCT ON (geo.name) ST_UNION (geo.geom) OVER (PARTITION BY geo.name) AS geomt, geo.* FROM main_data.dp AS geo) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "regions"
+        "gml_type" "auto"
+        "gml_include_items" "all"
+        ${mapserver_layer_metadata}
+    END
+    TRANSPARENCY 60
+    CLASS
+        NAME "Régions non couvertes"
+        EXPRESSION ('[type_2]' == "Aucun")
+        STYLE
+            OUTLINECOLOR 80 80 80
+            WIDTH 2
+        END 
+    END
+    CLASS
+        NAME "Suisse"
+        EXPRESSION ('[order00]' == "CHE")
+        STYLE
+            COLOR 255 190 230
+            OUTLINECOLOR 80 80 80
+            WIDTH 2
+        END 
+    END
+    CLASS
+        NAME "Allemagne"
+        EXPRESSION ('[order00]' == "DEU")
+        STYLE
+            COLOR 255 255 150
+            OUTLINECOLOR 80 80 80
+            WIDTH 2
+        END 
+    END
+    CLASS
+        NAME "France"
+        EXPRESSION ('[order00]' == "FRA")
+        STYLE
+            COLOR 180 255 230
+            OUTLINECOLOR 80 80 80
+            WIDTH 2
+        END 
+    END
+END
+LAYER
+    NAME 'documents'
+    TYPE POINT
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "cgeomt FROM (SELECT ST_Centroid(geomt) AS cgeomt, * FROM (SELECT DISTINCT ON (geo.name) ST_UNION (geo.geom) OVER (PARTITION BY geo.name) AS geomt, geo.* FROM main_data.dp AS geo) AS bar) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "documents"
+        "gml_type" "auto"
+        "gml_include_items" ""
+        ${mapserver_layer_metadata}
+    END
+    CLASS
+        NAME "Document disponible"
+        EXPRESSION ('[info_de]' == "Vorhandenes Planungsdokument")
+        STYLE
+            SYMBOL 'circle'
+            OUTLINECOLOR 80 80 80
+            SIZE 35
+            COLOR 255 255 255
+        END 
+    END
+    CLASS
+        NAME "Document en maintenance"
+        EXPRESSION ('[info_de]' == "Planungsdokument in Gesamtfortschreibung oder Erstellung")
+        STYLE
+            SYMBOL 'circle'
+            OUTLINECOLOR 80 80 80
+            SIZE 35
+            COLOR 255 0 0
+        END 
+    END
+END
