@@ -154,7 +154,6 @@ Ext.onReady(function() {
             },
             outputTarget: "layerpanel"
         },
-% if user:
         {
             ptype: "cgxp_querier",
             outputTarget: "left-panel",
@@ -164,10 +163,9 @@ Ext.onReady(function() {
             // it is intended to be reactivated this once mapserver is fixed
             //maxFeatures: 200,
             srsName: 'EPSG:3857',
-            featureTypes: ["MTP_adresse", "monuments", "arbres_remarq"],
+            featureTypes: ['densite_pop09_commune', 'regions'],
             attributeURLs: ${queryer_attribute_urls | n}
         },
-% endif
         {
             ptype: "cgxp_featuresgrid",
             id: "featureGrid",
