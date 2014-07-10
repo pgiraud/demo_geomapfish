@@ -25,6 +25,34 @@ LAYER
         END 
     END
 END
+############### Limites communales ###################
+LAYER
+    NAME 'limites_communales'
+    TYPE POLYGON
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT * FROM main_data.stats_communes) as foo using unique ogc_fid"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "limites_communales"
+        "gml_type" "auto"
+        "gml_include_items" ""
+        ${mapserver_layer_metadata}
+    END
+    CLASS
+         NAME "Limites communales"
+         STYLE
+            OUTLINECOLOR 80 80 80
+            WIDTH 1
+        END 
+    END
+END
+
 ############### Ville de plus de 100'000 habitants (2009) ###################
 LAYER
     NAME 'ville_pop09_100k'

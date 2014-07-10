@@ -77,4 +77,47 @@ SYMBOLSET
     #ANCHORPOINT 0.5 0.5
   END # end of SYMBOL
 
+  SYMBOL
+     NAME "left-half-circle"
+     TYPE vector
+     POINTS
+       0.35      0.75
+       0.2853    0.7415
+       0.2250    0.7165
+       0.1732    0.6768
+       0.1335    0.6250
+       0.1085    0.5647
+       0.10      0.5
+       0.1085    0.4252
+       0.1335    0.3649
+       0.1732    0.3132
+       0.2250    0.2734
+       0.2853    0.2485
+       0.35      0.24
+       0.35      0.75
+     END # end of POINTS
+     FILLED true
+  END
+
+  SYMBOL
+     NAME "right-half-circle"
+     TYPE vector
+     POINTS
+       0.65      0.24
+       0.7147    0.2485
+       0.7750    0.2734
+       0.8268    0.3132
+       0.8665    0.3649
+       0.8915    0.4252
+       0.90      0.5
+       0.8915    0.5647
+       0.8665    0.6250
+       0.8268    0.6768
+       0.7750    0.7165
+       0.7147    0.7415
+       0.65      0.75
+       0.65      0.24
+     END # end of POINTS
+     FILLED true
+  END
 END
