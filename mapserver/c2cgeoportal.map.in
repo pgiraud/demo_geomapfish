@@ -107,6 +107,7 @@ MAP
     INCLUDE "sigrs/global.map"
     INCLUDE "sigrs/population.map"
     INCLUDE "sigrs/evolution.map"
+    INCLUDE "sigrs/variation.map"
 
     LAYER
       NAME "Departements"
