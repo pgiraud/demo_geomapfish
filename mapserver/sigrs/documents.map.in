@@ -1,3 +1,4 @@
+############### regions ###################
 LAYER
     NAME 'regions'
     TYPE POLYGON
@@ -15,6 +16,8 @@ LAYER
         "wms_title" "regions"
         "gml_type" "auto"
         "gml_include_items" "all"
+        "gml_geometries" "geom"
+        "gml_geom_type" "polygon"
         ${mapserver_layer_metadata}
     END
     TRANSPARENCY 60
@@ -54,6 +57,8 @@ LAYER
         END 
     END
 END
+
+############### regions ###################
 LAYER
     NAME 'documents'
     TYPE POINT
@@ -62,7 +67,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "cgeomt FROM (SELECT ST_Centroid(geomt) AS cgeomt, * FROM (SELECT DISTINCT ON (geo.name) ST_UNION (geo.geom) OVER (PARTITION BY geo.name) AS geomt, geo.* FROM main_data.dp AS geo) AS bar) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    DATA "cgeomt FROM (SELECT ST_PointOnSurface(geomt) AS cgeomt, * , rn.number AS region_number FROM (SELECT DISTINCT ON (geo.name) ST_UNION (geo.geom) OVER (PARTITION BY geo.name) AS geomt, geo.* FROM main_data.dp AS geo) AS dp INNER JOIN main_data.region_number rn ON dp.name = rn.id) AS foo USING UNIQUE ogc_fid USING srid=3857"
     PROJECTION
          "init=epsg:3857"
     END
@@ -72,15 +77,81 @@ LAYER
         "gml_include_items" ""
         ${mapserver_layer_metadata}
     END
+    LABELITEM "region_number"
+    MAXSCALEDENOM 4500000
     CLASS
-        NAME "Document disponible"
+        MAXSCALEDENOM 1000000
         EXPRESSION ('[info_de]' == "Vorhandenes Planungsdokument")
         STYLE
             SYMBOL 'circle'
             OUTLINECOLOR 80 80 80
             SIZE 35
             COLOR 255 255 255
+        END
+        LABEL
+            TYPE truetype
+            FONT arial
+            COLOR 0 0 0
+            SIZE 10
+        END
+    END 
+    CLASS
+        MINSCALEDENOM 1000000
+        EXPRESSION ('[info_de]' == "Vorhandenes Planungsdokument")
+        STYLE
+            SYMBOL 'circle'
+            OUTLINECOLOR 80 80 80
+            SIZE 18
+            COLOR 255 255 255
+        END
+        LABEL
+            TYPE truetype
+            FONT arial
+            COLOR 0 0 0
+            SIZE 6
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 1000000
+        EXPRESSION ('[info_de]' == "Planungsdokument in Gesamtfortschreibung oder Erstellung")
+        STYLE
+            SYMBOL 'circle'
+            OUTLINECOLOR 80 80 80
+            SIZE 35
+            COLOR 255 0 0
         END 
+        LABEL
+            TYPE truetype
+            FONT arial
+            COLOR 0 0 0
+            SIZE 10
+        END
+    END
+    CLASS
+        MINSCALEDENOM 1000000
+        EXPRESSION ('[info_de]' == "Planungsdokument in Gesamtfortschreibung oder Erstellung")
+        STYLE
+            SYMBOL 'circle'
+            OUTLINECOLOR 80 80 80
+            SIZE 18
+            COLOR 255 0 0
+        END 
+        LABEL
+            TYPE truetype
+            FONT arial
+            COLOR 0 0 0
+            SIZE 6
+        END
+    END
+    CLASS
+        NAME "Document disponible"
+        EXPRESSION ('[info_de]' == "Vorhandenes Planungsdokument")
+        STYLE
+            SYMBOL 'circle'
+            OUTLINECOLOR 80 80 80
+            SIZE 15
+            COLOR 255 255 255
+        END
     END
     CLASS
         NAME "Document en maintenance"
@@ -88,7 +159,7 @@ LAYER
         STYLE
             SYMBOL 'circle'
             OUTLINECOLOR 80 80 80
-            SIZE 35
+            SIZE 15
             COLOR 255 0 0
         END 
     END
