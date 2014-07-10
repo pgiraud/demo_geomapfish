@@ -1,3 +1,4 @@
+############### territoire ###################
 LAYER
     NAME 'territoire'
     TYPE POLYGON
@@ -22,5 +23,89 @@ LAYER
             OUTLINECOLOR 110 20 20
             WIDTH 3
         END 
+    END
+END
+############### Ville de plus de 100'000 habitants (2009) ###################
+LAYER
+    NAME 'ville_pop09_100k'
+    GROUP 'villes_notables_09'
+    TYPE POINT
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT * FROM main_data.stats_centroides) as foo using unique ogc_fid"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "ville_pop09_100k"
+        "wms_group_title" "villes_notables_09"
+        "gml_type" "auto"
+        "gml_include_items" ""
+        ${mapserver_layer_metadata}
+    END
+    MAXSCALEDENOM 4500000
+    LABELITEM "name_m"
+    TRANSPARENCY 80
+    CLASS
+        NAME "VILLES de plus de 100'000 habitants"
+        EXPRESSION ([pop09] >= 100000)
+        STYLE
+            SYMBOL 'square'
+            SIZE 8
+            COLOR 0 0 0 
+        END
+        LABEL
+            TYPE truetype
+            POSITION AUTO
+            FONT arial
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            SIZE 10
+        END
+    END
+END
+############### Grandes villes denses (2009) ###################
+LAYER
+    NAME 'villes_importantes_09'
+    GROUP 'villes_notables_09'
+    TYPE POINT
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT * FROM main_data.stats_centroides) as foo using unique ogc_fid"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "villes_importantes_09"
+        "wms_group_title" "villes_notables_09"
+        "gml_type" "auto"
+        "gml_include_items" ""
+        ${mapserver_layer_metadata}
+    END
+    MAXSCALEDENOM 1000000
+    TRANSPARENCY 80
+    LABELITEM "name"
+    CLASS
+        NAME "Villes importantes"
+        EXPRESSION (([pop09] > 10000) AND ([pop09] / [sup] > 500) AND ([pop09] < 100000))
+        STYLE
+            SYMBOL 'square'
+            SIZE 5
+            COLOR 0 0 0 
+        END
+        LABEL
+            TYPE truetype
+            POSITION AUTO
+            FONT arial
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            SIZE 10
+        END
     END
 END

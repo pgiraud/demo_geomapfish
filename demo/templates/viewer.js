@@ -224,7 +224,7 @@ Ext.onReady(function() {
             ptype: "cgxp_fulltextsearch",
             url: "${request.route_url('fulltextsearch', path='')}",
             layerTreeId: "layertree",
-            pointRecenterZoom: 20,
+            pointRecenterZoom: 11,
             actionTarget: "center.tbar",
             grouping: true
         },

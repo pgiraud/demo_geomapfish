@@ -62,4 +62,19 @@ SYMBOLSET
     END # POINTS
     #ANCHORPOINT 0 0.5
   END # SYMBOL
+
+  SYMBOL
+    NAME "square"
+    TYPE vector # Type of symbol
+    POINTS
+      0 0
+      0 1
+      1 1
+      1 0
+      0 0
+    END # end of POINTS
+    FILLED true
+    #ANCHORPOINT 0.5 0.5
+  END # end of SYMBOL
+
 END
