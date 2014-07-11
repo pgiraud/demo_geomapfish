@@ -242,7 +242,7 @@ Ext.onReady(function() {
             ptype: "cgxp_print",
             toggleGroup: "maptools",
             legendPanelId: "legendPanel",
-            featureProvider: "featuresGrid",
+            featureProvider: "featureGrid",
             actionTarget: "center.tbar",
             printURL: "${request.route_url('printproxy', path='')}",
             mapserverURL: "${request.route_url('mapserverproxy', path='')}",
@@ -439,8 +439,7 @@ Ext.onReady(function() {
                     )]
                 })
             ],
-            layers: [
-            {
+            layers: [{
                 source: "olsource",
                 type: "OpenLayers.Layer.OSM",
                 group: 'background',
@@ -452,6 +451,7 @@ Ext.onReady(function() {
                         'http://otile3.mqcdn.com/tiles/1.0.0/osm/${"${z}/${x}/${y}"}.png'
                     ], {
                         transitionEffect: 'resize',
+                        projection: "EPSG:3857",
                         attribution: [
                             'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>',
                             ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
@@ -474,7 +474,9 @@ Ext.onReady(function() {
                         "http://c.tile.opencyclemap.org/cycle/${'${z}/${x}/${y}'}.png"
                     ],
                     {
+                        isBaseLayer: false,
                         transitionEffect: 'resize',
+                        projection: "EPSG:3857",
                         attribution: [
                             '© <a href="/copyright">Contributeurs de OpenStreetMap</a>. ',
                             'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
@@ -498,6 +500,7 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        projection: "EPSG:3857",
                         attribution: [
                             '© <a href="/copyright">Contributeurs de OpenStreetMap</a>. ',
                             'Tiles courtesy of <a target="_blank" href="http://www.thunderforest.com/">Andy Allan</a>'
@@ -519,6 +522,7 @@ Ext.onReady(function() {
                     ],
                     {
                         transitionEffect: 'resize',
+                        projection: "EPSG:3857",
                         attribution: [
                             "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> ",
                             "<a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"

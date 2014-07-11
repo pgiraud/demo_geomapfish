@@ -62,6 +62,12 @@ hosts:
   - !dnsMatch
     host: c.tile.opencyclemap.org
     port: 80
+  - !dnsMatch
+    host: a.tiles.mapbox.com
+    port: 80
+  - !dnsMatch
+    host: b.tiles.mapbox.com
+    port: 80
 
 localHostForward:
     from:

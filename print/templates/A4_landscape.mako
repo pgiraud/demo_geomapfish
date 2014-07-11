@@ -8,7 +8,7 @@
     #-------------------------------------------------------------------------
     mainPage:
       pageSize: A4
-      backgroundPdf: '<%text>$</%text>{configDir}/tpl_puidoux_A4_landscape.pdf'
+      ${self.backgroundPdf()}
       landscape: true
       rotation: true
       items:
