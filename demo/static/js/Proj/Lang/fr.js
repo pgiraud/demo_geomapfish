@@ -16,7 +16,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "blank": "Pas de fond de plan",
 
   "adresse": "Adresse",
-  "shorcut": "Raccourçi",
+  "shorcut": "Raccourci",
   "eclairage": "Éclairage",
   "recyclage": "Recyclage",
   "camera": "Caméra",
@@ -82,6 +82,24 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "cg67_colleges": "Collèges",
   "denominati": "Dénomination",
   "adresse_du": "Addrese",
-  "numero_de": "Numéro de téléphone"
+  "numero_de": "Numéro de téléphone",
+
+/** CG68 - sigrs **/
+  "thm_sigrs":"SIGRS",
+  "grp_global":"Généralités",
+  "villes_notables_09":"Villes à grande population - 2009",
+  "limites_communales":"Limites communales",
+  "territoire":"Limites couvertes par les SIGRS",
+  "grp_variation":"Variation de la population par communes",
+  "var_pop_0609":"Variation 2006-2009",
+  "grp_evolution":"Evolution de la population par communes",
+  "ev_pop_0609":"Evolution 2006-2009",
+  "ev_pop_0911":"Evolution 2009-2011",
+  "grp_regions":"Régions",
+  "documents":"Etat de la documentation",
+  "regions":"Régions",
+  "grp_population": "Population par communes",
+  "pop09_commune_10k":"Grande population - 2009",
+  "densite_pop09_commune": "Densité d'habitant par km2 - 2009",
 });
 
