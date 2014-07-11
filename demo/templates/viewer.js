@@ -148,7 +148,7 @@ Ext.onReady(function() {
 % if permalink_themes:
                 permalinkThemes: ${permalink_themes | n},
 % endif
-                defaultThemes: ["Equipement"],
+                defaultThemes: ["thm_sigrs"],
                 uniqueTheme: true,
                 wmsURL: "${request.route_url('mapserverproxy', path='')}"
             },
