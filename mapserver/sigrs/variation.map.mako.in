@@ -1,35 +1,56 @@
 ## -*- coding: utf-8 -*-
-############### Evolution de la population 2006-2009 ###################
+############### Evolution de la population 1999-2006 ###################
 <%!
-sizes = [{
-    'var': 4400,
+sizesev = [{
+    'pop': 100000,
     'symbole': '>=',
-    'size_l': 55,
-    'size_s': 28
+    'size_l': 56,
+    'size_s': 28,
+    'size_xs': 8,
+    'offsetX': 14,
+    'offsetX_l': 7,
+    'offsetY': 0,
 }, {
-    'var': 2000,
+    'pop': 30000,
     'symbole': '>',
     'size_l': 44,
-    'size_s': 22
+    'size_s': 22,
+    'size_xs': 7,
+    'offsetX': 11,
+    'offsetX_l': 5,
+    'offsetY': 0,
 }, {
-    'var': 350,
+    'pop': 10000,
     'symbole': '>',
-    'size_l': 33,
-    'size_s': 16
+    'size_l': 32,
+    'size_s': 16,
+    'size_xs': 6,
+    'offsetX': 8,
+    'offsetX_l': 4,
+    'offsetY': 0,
 }, {
-    'var': 150,
+    'pop': 3000,
     'symbole': '>',
-    'size_l': 22,
-    'size_s': 11,
+    'size_l': 20,
+    'size_s': 10,
+    'size_xs': 5,
+    'offsetX': 5,
+    'offsetX_l': 2,
+    'offsetY': 0,
 }, {
-    'var': 55,
+    'pop': 3000,
     'symbole': '<=',
-    'size_l': 11,
-    'size_s': 5
+    'size_l': 12,
+    'size_s': 6,
+    'size_xs': 4,
+    'offsetX': 3,
+    'offsetX_l': 1,
+    'offsetY': 0,
 }]
 %>
 LAYER
-    NAME 'var_pop_0609'
+    NAME "var_pop_9906"
+    GROUP "ev_pop"
     TYPE POINT
     STATUS ON
     TEMPLATE base
@@ -41,191 +62,434 @@ LAYER
          "init=epsg:3857"
     END
     METADATA
-        "wms_title" "var_pop_0609"
+        "wms_title" "ev_pop_9906"
+        "wms_group_title" "ev_pop"
         "gml_type" "auto"
-        "gml_include_items" ""
+        "gml_include_items" "order00,name,pop99,pop06,pop11,ev96"
         ${mapserver_layer_metadata}
     END
     MAXSCALEDENOM 4500000
-% for size in sizes:
+% for size in sizesev:
     CLASS
-        EXPRESSION (([ev69] <= -1) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] <= -1) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MINSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 0 90 230
             SIZE $${size['size_s']}
+            OFFSET -$${size['offsetX_l']} $${size['offsetY']}
         END 
     END
     CLASS
-        EXPRESSION (([ev69] <= -1) AND $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] <= -1) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MAXSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 0 90 230
             SIZE $${size['size_l']}
+            OFFSET -$${size['offsetX']} $${size['offsetY']}
         END 
     END
     CLASS
-        NAME "Evolution annuelle moyenne < -1 et variation $${size['symbole']} $${size['var']}"
-        EXPRESSION (([ev69] <= -1) AND ([var_69] $${size['symbole']} $${size['var']}))
+        NAME "Evolution annuelle moyenne < -1 et population $${size['symbole']} $${size['pop']} "
+        EXPRESSION (([ev96] <= -1) AND ([pop11] $${size['symbole']} $${size['pop']}))
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 0 90 230
-            SIZE $${size['size_s']}
+            SIZE $${size['size_xs']}
+            OFFSET 0 0
         END 
     END
     CLASS
-        EXPRESSION (([ev69] < -0.5) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] < -0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MINSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 100 180 255
             SIZE $${size['size_s']}
+            OFFSET -$${size['offsetX_l']} $${size['offsetY']}
         END 
     END
     CLASS
-        EXPRESSION (([ev69] < -0.5) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] < -0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MAXSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 100 180 255
             SIZE $${size['size_l']}
+            OFFSET -$${size['offsetX']} $${size['offsetY']}
         END 
     END
     CLASS
-        NAME "Evolution annuelle moyenne < -0.5 et variation $${size['symbole']} $${size['var']}"
-        EXPRESSION (([ev69] < -0.5) AND ([var_69] $${size['symbole']} $${size['var']}))
+        NAME "Evolution annuelle moyenne < -0.5 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev96] < -0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 100 180 255
-            SIZE $${size['size_s']}
+            SIZE $${size['size_xs']}
+            OFFSET 0 0
         END 
     END
     CLASS
-        EXPRESSION (([ev69] < 0)  AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] < 0)  AND ([pop11] $${size['symbole']} $${size['pop']}))
         MINSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 180 230 255
             SIZE $${size['size_s']}
+            OFFSET -$${size['offsetX_l']} $${size['offsetY']}
         END 
     END
     CLASS
-        EXPRESSION (([ev69] < 0) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] < 0) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MAXSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 180 230 255
             SIZE $${size['size_l']}
+            OFFSET -$${size['offsetX']} $${size['offsetY']}
         END 
     END
     CLASS
-        NAME "Evolution annuelle moyenne < 0 et variation $${size['symbole']} $${size['var']}"
-        EXPRESSION (([ev69] < 0) AND ([var_69] $${size['symbole']} $${size['var']}))
+        NAME "Evolution annuelle moyenne < 0 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev96] < 0) AND ([pop11] $${size['symbole']} $${size['pop']}))
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 180 230 255
-            SIZE $${size['size_s']}
+            SIZE $${size['size_xs']}
+            OFFSET 0 0 
         END 
     END
     CLASS
-        EXPRESSION (([ev69] < 0.5) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] < 0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MINSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 255 235 190
             SIZE $${size['size_s']}
+            OFFSET -$${size['offsetX_l']} $${size['offsetY']}
         END 
     END
     CLASS
-        EXPRESSION (([ev69] < 0.5) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] < 0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MAXSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 255 235 190
             SIZE $${size['size_l']}
+            OFFSET -$${size['offsetX']} $${size['offsetY']}
         END 
     END
     CLASS
-        NAME "Evolution annuelle moyenne < 0.5 et popupulation $${size['symbole']} $${size['var']}"
-        EXPRESSION (([ev69] < 0.5) AND ([var_69] $${size['symbole']} $${size['var']}))
+        NAME "Evolution annuelle moyenne < 0.5 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev96] < 0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 255 235 190
-            SIZE $${size['size_s']}
+            SIZE $${size['size_xs']}
+            OFFSET 0 0
         END 
     END
     CLASS
-        EXPRESSION (([ev69] < 1) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] < 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MINSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 255 165 130
             SIZE $${size['size_s']}
+            OFFSET -$${size['offsetX_l']} $${size['offsetY']}
         END 
     END
     CLASS
-        EXPRESSION (([ev69] < 1) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] < 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MAXSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 255 165 130
             SIZE $${size['size_l']}
+            OFFSET -$${size['offsetX']} $${size['offsetY']}
         END 
      END
      CLASS
-        NAME "Evolution annuelle moyenne < 1 et variation $${size['symbole']} $${size['var']}"
-        EXPRESSION (([ev69] < 1) AND ([var_69] $${size['symbole']} $${size['var']}))
+        NAME "Evolution annuelle moyenne < 1 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev96] < 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 255 165 130
-            SIZE $${size['size_s']}
+            SIZE $${size['size_xs']}
+            OFFSET 0 0
         END 
      END
      CLASS
-        EXPRESSION (([ev69] >= 1) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] >= 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MINSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 255 80 0
             SIZE $${size['size_s']}
+            OFFSET -$${size['offsetX_l']} $${size['offsetY']}
         END 
     END
     CLASS
-        EXPRESSION (([ev69] >= 1) AND ([var_69] $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] >= 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
         MAXSCALEDENOM 1000000
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 255 80 0
             SIZE $${size['size_l']}
+            OFFSET -$${size['offsetX']} $${size['offsetY']}
         END 
     END
     CLASS
-        NAME "Evolution annuelle moyenne >= 1 et variation $${size['symbole']} $${size['var']}"
-        EXPRESSION (([ev69] >= 1) AND ([var_69] $${size['symbole']} $${size['var']}))
+        NAME "Evolution annuelle moyenne >= 1 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev96] >= 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
         STYLE
-            SYMBOL 'circle'
+            SYMBOL 'left-half-circle'
             OUTLINECOLOR 0 0 0
             COLOR 255 80 0
+            SIZE $${size['size_xs']}
+            OFFSET 0 0
+        END 
+    END
+% endfor
+END
+
+############### Evolution de la population 2006-2011 ###################
+LAYER
+    NAME 'var_pop_0611'
+    GROUP 'ev_pop'
+    TYPE POINT
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geomt FROM (SELECT ST_PointOnSurface(geom) AS geomt, * FROM main_data.stats_communes) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "ev_pop_0611"
+        "wms_group_title" "ev_pop"
+        "gml_type" "auto"
+        "gml_include_items" "order00,name,pop99,pop06,pop11,ev61"
+        ${mapserver_layer_metadata}
+    END
+    MAXSCALEDENOM 4500000
+% for size in sizesev:
+    CLASS
+        EXPRESSION (([ev61] <= -1) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MINSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 0 90 230
             SIZE $${size['size_s']}
+            OFFSET $${size['offsetX_l']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        EXPRESSION (([ev61] <= -1) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MAXSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 0 90 230
+            SIZE $${size['size_l']}
+            OFFSET $${size['offsetX']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        NAME "Evolution annuelle moyenne < -1 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev61] <= -1) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 0 90 230
+            SIZE $${size['size_xs']}
+            OFFSET 0 0 
+        END 
+    END
+    CLASS
+        EXPRESSION (([ev61] < -0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MINSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 100 180 255
+            SIZE $${size['size_s']}
+            OFFSET $${size['offsetX_l']} $${size['offsetY']}
+        END
+    END
+    CLASS
+        EXPRESSION (([ev61] < -0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MAXSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 100 180 255
+            SIZE $${size['size_l']}
+            OFFSET $${size['offsetX']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        NAME "Evolution annuelle moyenne < -0.5 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev61] < -0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 100 180 255
+            SIZE $${size['size_xs']}
+            OFFSET 0 0 
+        END 
+    END
+    CLASS
+        EXPRESSION (([ev61] < 0)  AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MINSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 180 230 255
+            SIZE $${size['size_s']}
+            OFFSET $${size['offsetX_l']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        EXPRESSION (([ev61] < 0) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MAXSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 180 230 255
+            SIZE $${size['size_l']}
+            OFFSET $${size['offsetX']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        NAME "Evolution annuelle moyenne < 0 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev61] < 0) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 180 230 255
+            SIZE $${size['size_xs']}
+            OFFSET 0 0
+        END 
+    END
+    CLASS
+        EXPRESSION (([ev61] < 0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MINSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 255 235 190
+            SIZE $${size['size_s']}
+            OFFSET $${size['offsetX_l']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        EXPRESSION (([ev61] < 0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MAXSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 255 235 190
+            SIZE $${size['size_l']}
+            OFFSET $${size['offsetX']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        NAME "Evolution annuelle moyenne < 0.5 et popupulation $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev61] < 0.5) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 255 235 190
+            SIZE $${size['size_xs']}
+            OFFSET 0 0
+        END 
+    END
+    CLASS
+        EXPRESSION (([ev61] < 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MINSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 255 165 130
+            SIZE $${size['size_s']}
+            OFFSET $${size['offsetX_l']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        EXPRESSION (([ev61] < 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MAXSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 255 165 130
+            SIZE $${size['size_l']}
+            OFFSET $${size['offsetX']} $${size['offsetY']}
+        END 
+     END
+     CLASS
+        NAME "Evolution annuelle moyenne < 1 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev61] < 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 255 165 130
+            SIZE $${size['size_xs']}
+            OFFSET 0 0
+        END 
+     END
+     CLASS
+        EXPRESSION (([ev61] >= 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MINSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 255 80 0
+            SIZE $${size['size_xs']}
+            OFFSET $${size['offsetX_l']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        EXPRESSION (([ev61] >= 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        MAXSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 255 80 0
+            SIZE $${size['size_l']}
+            OFFSET $${size['offsetX']} $${size['offsetY']}
+        END 
+    END
+    CLASS
+        NAME "Evolution annuelle moyenne >= 1 et population $${size['symbole']} $${size['pop']}"
+        EXPRESSION (([ev61] >= 1) AND ([pop11] $${size['symbole']} $${size['pop']}))
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0
+            COLOR 255 80 0
+            SIZE $${size['size_xs']}
+            OFFSET 0 0
         END 
     END
 % endfor
