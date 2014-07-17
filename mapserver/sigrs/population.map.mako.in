@@ -1,20 +1,32 @@
-############### densité par commune ###################
+## -*- coding: utf-8 -*-
+<%!
+layers = [{
+    'pop': "pop09"
+}, {
+    'pop': "pop11"
+}]
+%>
+
+% for layer in layers:
+############### densité d'habitants par commune $${layer['pop']} ###################
 LAYER
-    NAME 'densite_pop09_commune'
+    NAME "densite_$${layer['pop']}_commune"
+    GROUP "densite_commune"
     TYPE POLYGON
     STATUS ON
     TEMPLATE base
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM main_data.stats_communes) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    DATA "geom FROM (SELECT *, name AS commune_name FROM main_data.stats_communes) AS foo USING UNIQUE ogc_fid USING srid=3857"
     PROJECTION
          "init=epsg:3857"
     END
     METADATA
-        "wms_title" "densite_pop09_commune"
+        "wms_title" "densite_$${layer['pop']}_commune"
+        "wms_group_title" "densite_commune"
         "gml_type" "auto"
-        "gml_include_items" "all"
+        "gml_include_items" "order00,commune_name,featarea,$${layer['pop']}"
         "gml_geometries" "geom"
         "gml_geom_type" "polygon"
         ${mapserver_layer_metadata}
@@ -22,35 +34,35 @@ LAYER
     TRANSPARENCY 80
     CLASS
         NAME "Densité < 100"
-        EXPRESSION ([pop09] / [featarea] * 1000000 < 100)
+        EXPRESSION ([$${layer['pop']}] / [featarea] * 1000000 < 100)
         STYLE
             COLOR 200 230 230
         END 
     END
     CLASS
         NAME "Densité 100>200"
-        EXPRESSION ([pop09] / [featarea] * 1000000 < 200)
+        EXPRESSION ([$${layer['pop']}] / [featarea] * 1000000 < 200)
         STYLE
             COLOR 150 190 210
         END 
     END
     CLASS
         NAME "Densité 200>250"
-        EXPRESSION ([pop09] / [featarea] * 1000000 < 250)
+        EXPRESSION ([$${layer['pop']}] / [featarea] * 1000000 < 250)
         STYLE
             COLOR 110 160 180
         END 
     END
     CLASS
         NAME "Densité 250>300"
-        EXPRESSION ([pop09] / [featarea] * 1000000 < 300)
+        EXPRESSION ([$${layer['pop']}] / [featarea] * 1000000 < 300)
         STYLE
             COLOR 70 130 160
         END 
     END
     CLASS
         NAME "Densité > 300"
-        EXPRESSION ([pop09] / [featarea] * 1000000 >= 300)
+        EXPRESSION ([$${layer['pop']}] / [featarea] * 1000000 >= 300)
         STYLE
             COLOR 20 100 130
         END 
@@ -59,7 +71,8 @@ END
 
 ############### population des commune de plus de 10'000 habitants  ###################
 LAYER
-    NAME 'pop09_commune_10k'
+    NAME "$${layer['pop']}_commune_10k"
+    GROUP "densite_commune"
     TYPE POINT
     STATUS ON
     TEMPLATE base
@@ -71,14 +84,15 @@ LAYER
          "init=epsg:3857"
     END
     METADATA
-        "wms_title" "pop09_commune_10k"
+        "wms_title" "[$${layer['pop']}]_commune_10k"
+        "wms_group_title" "densite_commune"
         "gml_type" "auto"
         "gml_include_items" ""
         ${mapserver_layer_metadata}
     END
     MAXSCALEDENOM 4500000
     CLASS
-        EXPRESSION ([pop09] > 100000)
+        EXPRESSION ([$${layer['pop']}] > 100000)
         MINSCALEDENOM 1000000
         STYLE
             SYMBOL 'circle'
@@ -87,7 +101,7 @@ LAYER
         END 
     END
     CLASS
-        EXPRESSION ([pop09] > 100000)
+        EXPRESSION ([$${layer['pop']}] > 100000)
         MAXSCALEDENOM 1000000
         STYLE
             SYMBOL 'circle'
@@ -96,7 +110,7 @@ LAYER
         END 
     END
     CLASS
-        EXPRESSION ([pop09] > 30000)
+        EXPRESSION ([$${layer['pop']}] > 30000)
         MINSCALEDENOM 1000000
         STYLE
             SYMBOL 'circle'
@@ -105,7 +119,7 @@ LAYER
         END 
     END
     CLASS
-        EXPRESSION ([pop09] > 30000)
+        EXPRESSION ([$${layer['pop']}] > 30000)
         MAXSCALEDENOM 1000000
         STYLE
             SYMBOL 'circle'
@@ -114,7 +128,7 @@ LAYER
         END 
     END
     CLASS
-        EXPRESSION ([pop09] > 10000)
+        EXPRESSION ([$${layer['pop']}] > 10000)
         MINSCALEDENOM 1000000
         STYLE
             SYMBOL 'circle'
@@ -123,7 +137,7 @@ LAYER
         END 
     END
     CLASS
-        EXPRESSION ([pop09] > 10000)
+        EXPRESSION ([$${layer['pop']}] > 10000)
         MAXSCALEDENOM 1000000
         STYLE
             SYMBOL 'circle'
@@ -133,7 +147,7 @@ LAYER
     END
     CLASS
         NAME "Population > 100'000"
-        EXPRESSION ([pop09] > 100000)
+        EXPRESSION ([$${layer['pop']}] > 100000)
         STYLE
             SYMBOL 'circle'
             OUTLINECOLOR 255 0 0
@@ -142,7 +156,7 @@ LAYER
     END
     CLASS
         NAME "Population 30'000>100'000"
-        EXPRESSION ([pop09] > 30000)
+        EXPRESSION ([$${layer['pop']}] > 30000)
         STYLE
             SYMBOL 'circle'
             OUTLINECOLOR 255 0 0
@@ -151,7 +165,7 @@ LAYER
     END
     CLASS
         NAME "Population 10'000>30'000"
-        EXPRESSION ([pop09] > 10000)
+        EXPRESSION ([$${layer['pop']}] > 10000)
         STYLE
             SYMBOL 'circle'
             OUTLINECOLOR 255 0 0
@@ -159,3 +173,4 @@ LAYER
         END 
     END
 END
+% endfor

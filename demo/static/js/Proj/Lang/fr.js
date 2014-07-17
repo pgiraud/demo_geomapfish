@@ -99,7 +99,16 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "documents":"Etat de la documentation",
   "regions":"Régions",
   "grp_population": "Population par communes",
+  "grp_population09": "Population 2009",
+  "grp_population11": "Population 2011",
   "pop09_commune_10k":"Grande population - 2009",
+  "pop11_commune_10k":"Grande population - 2011",
   "densite_pop09_commune": "Densité d'habitant par km2 - 2009",
+  "densite_pop11_commune": "Densité d'habitant par km2 - 2011",
+  "order00": "Pays",
+  "featarea": "Taille",
+  "commune_name": "Nom de commune",
+  "pop11": "Population",
+  "pop09": "Population",
 });
 
