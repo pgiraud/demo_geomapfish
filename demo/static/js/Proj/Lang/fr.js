@@ -110,5 +110,10 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "commune_name": "Nom de commune",
   "pop11": "Population",
   "pop09": "Population",
+  "phone": "Téléphone",
+  "mail": "Courriel",
+  "partiel": "Partiel",
+  "region_name": "Région",
+  "url": "Lien externe",
 });
 

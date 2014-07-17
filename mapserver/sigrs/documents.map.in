@@ -7,15 +7,14 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    #DATA "geom FROM (SELECT * FROM main_data.dp) AS foo USING UNIQUE ogc_fid USING srid=3857"
-    DATA "geomt FROM (SELECT DISTINCT ON (geo.name) ST_UNION (geo.geom) OVER (PARTITION BY geo.name) AS geomt, geo.* FROM main_data.dp AS geo) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    DATA "geomt FROM (SELECT DISTINCT ON (geo.name) ST_UNION (geo.geom) OVER (PARTITION BY geo.name) AS geomt, geo.*, name AS region_name, '<a target=\"_blank\" href=\"http://'||geo.www||'\">http://'||geo.www||'</a>' AS url FROM main_data.dp AS geo) AS foo USING UNIQUE ogc_fid USING srid=3857"
     PROJECTION
          "init=epsg:3857"
     END
     METADATA
         "wms_title" "regions"
         "gml_type" "auto"
-        "gml_include_items" "all"
+        "gml_include_items" "order00,region_name,phone,mail,url,partiel"
         "gml_geometries" "geom"
         "gml_geom_type" "polygon"
         ${mapserver_layer_metadata}
