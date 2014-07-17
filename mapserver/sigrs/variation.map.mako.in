@@ -69,7 +69,7 @@ LAYER
         END 
     END
     CLASS
-        NAME "Evolution annuelle moyenne < -1 et variation >= 100'000"
+        NAME "Evolution annuelle moyenne < -1 et variation $${size['symbole']} $${size['var']}"
         EXPRESSION (([ev69] <= -1) AND ([var_69] $${size['symbole']} $${size['var']}))
         STYLE
             SYMBOL 'circle'
