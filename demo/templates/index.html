@@ -83,16 +83,18 @@
             </ul>
             <div id="lang">
 % if lang != 'de':
-             <a href="${request.route_url('home')}?lang=de">de</a> - 
+             <a href="${request.route_url('home')}?lang=de">de</a> 
 % endif
 % if lang != 'fr':
              <a href="${request.route_url('home')}?lang=fr">fr</a>
+<%doc>
 % if lang != 'en':
              -
 % endif
 % endif
 % if lang != 'en':
              <a href="${request.route_url('home')}?lang=en">en</a> 
+</%doc>
 % endif
             </div>
             <div id="toolbar">

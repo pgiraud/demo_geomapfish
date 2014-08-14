@@ -71,7 +71,7 @@ LAYER
         END 
     END
     CLASS
-        EXPRESSION (([ev96] <= -1) AND $${size['symbole']} $${size['var']}))
+        EXPRESSION (([ev96] <= -1) AND ([var_96] $${size['symbole']} $${size['var']}))
         MAXSCALEDENOM 1000000
         STYLE
             SYMBOL 'circle'

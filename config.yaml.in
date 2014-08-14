@@ -5,9 +5,9 @@ default_locale_name: fr
 
 # The set of languages supported by the applications.
 available_locale_names:
-#- en
 - fr
-#- de
+- de
+#- en
 
 admin_interface:
 # Default values for the admin interface's maps.

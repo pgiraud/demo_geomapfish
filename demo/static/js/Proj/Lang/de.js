@@ -13,6 +13,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
 
   "OSM_MapQuest": "OSM-Karte",
   "plan":"Lokale Karte",
+  "Dessin": "Zeichnung",
 
   "adresse": "Addresspunkt",
   "shortcut": "Shortcut",
@@ -84,6 +85,41 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "cg67_colleges": "Hauptschule",
   "denominati": "Benennung",
   "adresse_du": "Adresse",
-  "numero_de": "Telefonnummer"
+  "numero_de": "Telefonnummer",
+
+/** CG68 - sigrs **/
+  "thm_sigrs":"GISOR",
+  "grp_generalite": "General",
+  "grp_amenagement": "Raumordnung",
+  "grp_statistiques": "Statistik",
+  "limites_communales":"Gemeinden",
+  "territoire":"ORK Perimeter",
+  "var_pop_9906":"Entwicklung 1999-2006",
+  "var_pop_0611":"Entwicklung 2006-2011",
+  "var_pop": "Entwicklung  1999-2006-2006-2011",
+  "ev_pop_9906":"Entwicklung 1999-2006",
+  "ev_pop_0611":"Entwicklung 2006-2011",
+  "name": "Name",
+  "ev96": "Entwicklung 1999-2006",
+  "ev61": "Entwicklung 2006-2011",
+  "documents":"Stand Übergeordnete Planungen",
+  "regions":"Übergeordnete Planungen Perimeter",
+  "pop09_commune_10k":"Städte > 10.000 Einwohnern - 2009",
+  "pop11_commune_10k":"Städte > 10.000 Einwohnern - 2011",
+  "densite_pop09_commune": "Bevölkerungsdichte 2009",
+  "densite_pop11_commune": "Bevölkerungsdichte 2011",
+  "order00": "Land",
+  "featarea": "Bereich",
+  "commune_name": "Gemeiden Namen",
+  "pop11": "Bevölkerung 2011",
+  "pop09": "Bevölkerung 2009",
+  "pop06": "Bevölkerung 2006",
+  "pop99": "Bevölkerung 1999",
+  "phone": "Telefon",
+  "mail": "E-mail",
+  "partiel": "Teil",
+  "region_name": "Raum",
+  "url": "Externer Link"
+
 });
 

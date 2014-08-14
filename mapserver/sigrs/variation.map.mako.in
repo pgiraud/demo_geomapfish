@@ -50,7 +50,7 @@ sizesev = [{
 %>
 LAYER
     NAME "var_pop_9906"
-    GROUP "ev_pop"
+    GROUP "var_pop"
     TYPE POINT
     STATUS ON
     TEMPLATE base
@@ -274,7 +274,7 @@ END
 ############### Evolution de la population 2006-2011 ###################
 LAYER
     NAME 'var_pop_0611'
-    GROUP 'ev_pop'
+    GROUP 'var_pop'
     TYPE POINT
     STATUS ON
     TEMPLATE base
