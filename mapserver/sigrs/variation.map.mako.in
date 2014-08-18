@@ -12,7 +12,7 @@ sizesev = [{
     'offsetY': 0,
 }, {
     'pop': 30000,
-    'symbole': '>',
+    'symbole': '>=',
     'size_l': 44,
     'size_s': 22,
     'size_xs': 7,
@@ -21,7 +21,7 @@ sizesev = [{
     'offsetY': 0,
 }, {
     'pop': 10000,
-    'symbole': '>',
+    'symbole': '>=',
     'size_l': 32,
     'size_s': 16,
     'size_xs': 6,
@@ -30,7 +30,7 @@ sizesev = [{
     'offsetY': 0,
 }, {
     'pop': 3000,
-    'symbole': '>',
+    'symbole': '>=',
     'size_l': 20,
     'size_s': 10,
     'size_xs': 5,
@@ -39,7 +39,7 @@ sizesev = [{
     'offsetY': 0,
 }, {
     'pop': 3000,
-    'symbole': '<=',
+    'symbole': '<',
     'size_l': 12,
     'size_s': 6,
     'size_xs': 4,

@@ -100,6 +100,8 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "name": "Nom",
   "ev96": "Évolution 1999-2006",
   "ev61": "Évolution 2006-2011",
+  "var_96": "Variation 1999-2006",
+  "var_61": "Variation 2006-2011",
   "documents":"État de planification régionale",
   "regions":"Périmètres de planification régionale",
   "pop09_commune_10k":"Communes > 10 000 habitants - 2009",

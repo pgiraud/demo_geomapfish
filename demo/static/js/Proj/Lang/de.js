@@ -103,6 +103,8 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "name": "Name",
   "ev96": "Entwicklung 1999-2006",
   "ev61": "Entwicklung 2006-2011",
+  "var_96": "Variation 1999-2011",
+  "var_61": "Variation 2006-2011",
   "documents":"Stand Übergeordnete Planungen",
   "regions":"Übergeordnete Planungen Perimeter",
   "pop09_commune_10k":"Städte > 10.000 Einwohnern - 2009",

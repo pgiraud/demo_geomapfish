@@ -8,31 +8,31 @@ sizesvar = [{
     'size_xs': 8,
 }, {
     'var': 2000,
-    'symbole': '>',
+    'symbole': '>=',
     'size_l': 56,
     'size_s': 28,
     'size_xs': 7,
 }, {
     'var': 800,
-    'symbole': '>',
+    'symbole': '>=',
     'size_l': 44,
     'size_s': 22,
     'size_xs': 6,
 }, {
     'var': 350,
-    'symbole': '>',
+    'symbole': '>=',
     'size_l': 32,
     'size_s': 16,
     'size_xs': 6,
 }, {
     'var': 150,
-    'symbole': '>',
+    'symbole': '>=',
     'size_l': 24,
     'size_s': 12,
     'size_xs': 5,
 }, {
-    'var': 55,
-    'symbole': '<=',
+    'var': 150,
+    'symbole': '<',
     'size_l': 12,
     'size_s': 6,
     'size_xs': 4,
@@ -56,7 +56,7 @@ LAYER
         "wms_title" "ev_pop_9906"
         "wms_group_title" "ev_pop" 
         "gml_type" "auto"
-        "gml_include_items" "order00,name,pop99,pop06,pop11,ev96"
+        "gml_include_items" "order00,name,pop99,pop06,pop11,ev96,var_96"
         ${mapserver_layer_metadata}
     END
     MAXSCALEDENOM 4500000
@@ -265,7 +265,7 @@ LAYER
         "wms_title" "ev_pop_0611"
         "wms_group_title" "ev_pop" 
         "gml_type" "auto"
-        "gml_include_items" "order00,name,pop99,pop06,pop11,ev61"
+        "gml_include_items" "order00,name,pop99,pop06,pop11,ev61,var_61"
         ${mapserver_layer_metadata}
     END
     MAXSCALEDENOM 4500000
