@@ -49,7 +49,8 @@ sizesev = [{
 }]
 %>
 LAYER
-    NAME "var_pop_9906"
+    #NAME "var_pop_9906"
+    NAME "var_pop_990611"
     GROUP "var_pop"
     TYPE POINT
     STATUS ON
@@ -57,13 +58,14 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geomt FROM (SELECT ST_PointOnSurface(geom) AS geomt, * FROM main_data.stats_communes) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    #DATA "geomt FROM (SELECT ST_PointOnSurface(geom) AS geomt, * FROM main_data.stats_communes) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    DATA "geom FROM (SELECT * FROM main_data.stats_centroides) AS foo USING UNIQUE ogc_fid USING srid=3857"
     PROJECTION
          "init=epsg:3857"
     END
     METADATA
-        "wms_title" "ev_pop_9906"
-        "wms_group_title" "ev_pop"
+        "wms_title" "var_pop_9906"
+        "wms_group_title" "var_pop"
         "gml_type" "auto"
         "gml_include_items" "order00,name,pop99,pop06,pop11,ev96"
         ${mapserver_layer_metadata}
@@ -281,15 +283,17 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geomt FROM (SELECT ST_PointOnSurface(geom) AS geomt, * FROM main_data.stats_communes) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    #DATA "geomt FROM (SELECT ST_PointOnSurface(geom) AS geomt, * FROM main_data.stats_communes) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    DATA "geom FROM (SELECT * FROM main_data.stats_centroides) AS foo USING UNIQUE ogc_fid USING srid=3857"
     PROJECTION
          "init=epsg:3857"
     END
     METADATA
-        "wms_title" "ev_pop_0611"
-        "wms_group_title" "ev_pop"
+        "wms_title" "var_pop_0611"
+        "wms_group_title" "var_pop"
         "gml_type" "auto"
-        "gml_include_items" "order00,name,pop99,pop06,pop11,ev61"
+        #"gml_include_items" "order00,name,pop99,pop06,pop11,ev61"
+        "gml_include_items" ""
         ${mapserver_layer_metadata}
     END
     MAXSCALEDENOM 4500000

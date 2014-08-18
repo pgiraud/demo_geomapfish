@@ -79,7 +79,8 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geomt FROM (SELECT ST_PointOnSurface(geom) AS geomt, * FROM main_data.stats_communes) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    #DATA "geomt FROM (SELECT ST_PointOnSurface(geom) AS geomt, * FROM main_data.stats_communes) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    DATA "geom FROM (SELECT * FROM main_data.stats_centroides) AS foo USING UNIQUE ogc_fid USING srid=3857"
     PROJECTION
          "init=epsg:3857"
     END

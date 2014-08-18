@@ -97,6 +97,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "var_pop_9906":"Entwicklung 1999-2006",
   "var_pop_0611":"Entwicklung 2006-2011",
   "var_pop": "Entwicklung  1999-2006-2006-2011",
+  "var_pop_990611":"Entwicklung 1999-2006-2006-2011",
   "ev_pop_9906":"Entwicklung 1999-2006",
   "ev_pop_0611":"Entwicklung 2006-2011",
   "name": "Name",
