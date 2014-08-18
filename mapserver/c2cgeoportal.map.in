@@ -65,7 +65,7 @@ MAP
     WEB
         METADATA
             "wms_title" "Démo du c2cgeoportal"
-            "wms_abstract" "Des exemples de couches à partir de données OpenData de différentes villes françaises et suisse."
+            "wms_abstract" "Couches de données SIGR / GISOR"
             "wms_onlineresource" "http://${vars:host}/${vars:instanceid}/wsgi/mapserv_proxy"
             "wms_srs" "epsg:3857"
             "wms_encoding" "UTF-8"
@@ -85,22 +85,22 @@ MAP
     END
 
     # OSM
-    INCLUDE "osm.map"
-    INCLUDE "edit.map"
+#    INCLUDE "osm.map"
+#    INCLUDE "edit.map"
 
-    # Montpellier
-    INCLUDE "montpellier/administration.map"
-    INCLUDE "montpellier/equipement.map"
-    INCLUDE "montpellier/paysage.map"
-    INCLUDE "montpellier/environnement.map"
-    INCLUDE "montpellier/patrimoine.map"
-    INCLUDE "montpellier/planville.map"
-
-    #CG67
-    INCLUDE "cg67/cadastre.map"
-    INCLUDE "cg67/enseignement.map"
-    INCLUDE "cg67/transport.map"
-    INCLUDE "cg67/administration.map"
+#    # Montpellier
+#    INCLUDE "montpellier/administration.map"
+#    INCLUDE "montpellier/equipement.map"
+#    INCLUDE "montpellier/paysage.map"
+#    INCLUDE "montpellier/environnement.map"
+#    INCLUDE "montpellier/patrimoine.map"
+#    INCLUDE "montpellier/planville.map"
+#
+#    #CG67
+#    INCLUDE "cg67/cadastre.map"
+#    INCLUDE "cg67/enseignement.map"
+#    INCLUDE "cg67/transport.map"
+#    INCLUDE "cg67/administration.map"
 
     #sigrs
     INCLUDE "sigrs/documents.map"
