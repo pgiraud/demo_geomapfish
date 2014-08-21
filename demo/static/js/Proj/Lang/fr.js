@@ -91,6 +91,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "grp_statistiques": "Statistiques",
   "limites_communales":"Communes",
   "territoire":"Périmètre CRS",
+  "limites":"Périmètre CRS",
   "var_pop_9906":"Évolution 1999-2006",
   "var_pop_0611":"Évolution 2006-2011",
   "var_pop": "Évolution 1999-2006-2006-2011",
@@ -119,6 +120,10 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "mail": "Courriel",
   "partiel": "Partiel",
   "region_name": "Région",
-  "url": "Lien externe"
+  "url": "Lien externe",
+  "www": "Lien externe",
+  "order08_n": "Région",
+  "type_1": "Type",
+  "epci": "EPCI"
 });
 

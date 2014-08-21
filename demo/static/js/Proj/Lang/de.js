@@ -94,6 +94,7 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "grp_statistiques": "Statistik",
   "limites_communales":"Gemeinden",
   "territoire":"ORK Perimeter",
+  "limites":"ORK Perimeter",
   "var_pop_9906":"Entwicklung 1999-2006",
   "var_pop_0611":"Entwicklung 2006-2011",
   "var_pop": "Entwicklung  1999-2006-2006-2011",
@@ -122,7 +123,10 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "mail": "E-mail",
   "partiel": "Teil",
   "region_name": "Raum",
-  "url": "Externer Link"
-
+  "url": "Externer Link",
+  "www": "Externer Link",
+  "order08_n": "Region",
+  "type_1": "Type",
+  "epci": "EPCI"
 });
 

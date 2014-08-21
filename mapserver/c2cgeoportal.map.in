@@ -108,6 +108,7 @@ MAP
     INCLUDE "sigrs/population.map"
     INCLUDE "sigrs/evolution.map"
     INCLUDE "sigrs/variation.map"
+    INCLUDE "sigrs/cooperation.map"
 
     LAYER
       NAME "Departements"
@@ -129,7 +130,7 @@ MAP
            MINWIDTH 1
   
         END
-     END
+      END
       METADATA
           "wms_title" "Departements" # For WMS
           "wms_group_title" "plan"

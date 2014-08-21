@@ -1,6 +1,7 @@
 ############### territoire ###################
 LAYER
     NAME 'territoire'
+    GROUP 'limites'
     TYPE POLYGON
     STATUS ON
     TEMPLATE base
@@ -13,6 +14,7 @@ LAYER
     END
     METADATA
         "wms_title" "couverture"
+        "wms_group_title" "limites"
         "gml_type" "auto"
         "gml_include_items" ""
         ${mapserver_layer_metadata}

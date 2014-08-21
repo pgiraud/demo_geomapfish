@@ -1,0 +1,82 @@
+################ declaration ###################
+LAYER
+    NAME 'declaration'
+    GROUP 'limites'
+    TYPE POLYGON
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT * FROM main_data.dp) as foo using unique ogc_fid"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "declaration"
+        "wms_limites_title" "limites"
+        "gml_type" "auto"
+        "gml_include_items" ""
+        ${mapserver_layer_metadata}
+    END
+    CLASS
+        NAME "Commune concernées par la déclaration"
+        EXPRESSION ('[type_1]' != '')
+        STYLE
+            OUTLINECOLOR 230 10 120
+            WIDTH 1
+        END 
+    END
+    CLASS
+        NAME "Communes non concernées par la déclaration"
+        EXPRESSION ('[type_1]' == '')
+        STYLE
+            OUTLINECOLOR 80 80 80
+            WIDTH 2
+        END 
+    END
+END
+
+################ limites des CC ###################
+LAYER
+    NAME 'limites_cc'
+    GROUP 'limites'
+    TYPE POLYGON
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT * FROM main_data.dp WHERE type_1 IS NOT NULL) as foo using unique ogc_fid"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "limites_cc"
+        "wms_group_title" "limites"
+        "gml_type" "auto"
+        "gml_geometries" "geom"
+        "gml_geom_type" "polygon"
+        "gml_include_items" "order00,order08_n,type_1,type2,epci,phone,mail,www"
+        ${mapserver_layer_metadata}
+    END
+    TRANSPARENCY 60
+    CLASS
+        NAME "Compétence en aménagement"
+        EXPRESSION ('[epci]' == '')
+        STYLE
+            COLOR 80 80 80
+        END 
+    END
+    CLASS
+        NAME "Sans compétence en aménagement"
+        EXPRESSION ('[epci]' != '')
+        STYLE
+            SYMBOL 'hatch'
+            ANGLE 45
+            COLOR 120 120 120
+            SIZE 3
+            WIDTH 1
+        END 
+    END
+END
