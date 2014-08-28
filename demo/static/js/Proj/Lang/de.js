@@ -127,6 +127,14 @@ OpenLayers.Util.extend(OpenLayers.Lang.de, {
   "www": "Externer Link",
   "order08_n": "Region",
   "type_1": "Type",
-  "epci": "EPCI"
+  "epci": "EPCI",
+  "et_fr": "Klasse (Fr)",
+  "et_de": "Klasse (De)",
+  "typ_fr": "Art (fr)",
+  "typ_de": "Art (de)",
+  "adress": "Adresse",
+  "infos": "Infos",
+  "EcolesBilingues_BilingualSchulen_ETRS89": "Bilinguale Schulen",
+  "grp_ecoles": "Erziehung"
 });
 

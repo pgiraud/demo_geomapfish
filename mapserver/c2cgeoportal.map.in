@@ -109,6 +109,7 @@ MAP
     INCLUDE "sigrs/evolution.map"
     INCLUDE "sigrs/variation.map"
     INCLUDE "sigrs/cooperation.map"
+    INCLUDE "sigrs/ecoles.map"
 
     LAYER
       NAME "Departements"

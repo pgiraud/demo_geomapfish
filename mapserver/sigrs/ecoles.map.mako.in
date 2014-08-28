@@ -1,0 +1,274 @@
+############### Ecoles bilingues 2014 ###################
+<%!
+ecoles = [{
+    'type': u'Public',
+    'level': u'Lycée',
+    'color': '108 223 254',
+    'border_width': '1.0',
+}, {
+    'type': u'Privé',
+    'level': u'Lycée',
+    'color': '108 223 254',
+    'border_width': '3.0',
+}, {
+    'type': u'Public',
+    'level': u'Ecoles de Formation Professionnelle',
+    'color': '180 230 255',
+    'border_width': '1.0',
+}, {
+    'type': u'Public',
+    'level': u'Collège',
+    'color': '74 192 40',
+    'border_width': '1.0',
+}, {
+    'type': u'Privé',
+    'level': u'Collège',
+    'color': '74 192 40',
+    'border_width': '3.0',
+}, {
+    'type': u'Public',
+    'level': u'Primaire',
+    'color': '197 60 33',
+    'border_width': '1.0',
+}, {
+    'type': u'Privé',
+    'level': u'Primaire',
+    'color': '197 60 33',
+    'border_width': '3.0',
+#Two kind of layers has been added manually, see at the end of this file.
+}]
+%>
+LAYER
+    NAME "EcolesBilingues_BilingualSchulen_ETRS89"
+    GROUP "ecoles"
+    TYPE POINT
+    STATUS ON
+    TEMPLATE base
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "${mapserver_connection}"
+    DATA "geom FROM (SELECT * FROM main_data.ecolesbilingues) AS foo USING UNIQUE ogc_fid USING srid=3857"
+    PROJECTION
+         "init=epsg:3857"
+    END
+    METADATA
+        "wms_title" "EcolesBilingues_BilingualSchulen_ETRS89"
+        "wms_group_title" "ecoles" 
+        "gml_type" "auto"
+        "gml_include_items" "name,et_fr,et_de,typ_fr,typ_de,adress,phone,www,infos"
+        ${mapserver_layer_metadata}
+    END
+    MAXSCALEDENOM 4500000
+% for ecole in ecoles:
+    CLASS
+        EXPRESSION (('[typ_fr]' == "$${ecole['type']}") AND ('[et_fr]' == "$${ecole['level']}"))
+        MINSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'circle'
+            OUTLINECOLOR 0 0 0
+            WIDTH $${ecole['border_width']}
+            COLOR $${ecole['color']}
+            SIZE 6
+        END 
+    END
+    CLASS
+        EXPRESSION (('[typ_fr]' == "$${ecole['type']}") AND ('[et_fr]' == "$${ecole['level']}"))
+        MAXSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'circle'
+            OUTLINECOLOR 0 0 0
+            WIDTH $${ecole['border_width']}
+            COLOR $${ecole['color']}
+            SIZE 12
+        END 
+    END
+    CLASS
+        NAME "$${ecole['level']} $${ecole['type']}"
+        EXPRESSION (('[typ_fr]' == "$${ecole['type']}") AND ('[et_fr]' == "$${ecole['level']}"))
+        STYLE
+            SYMBOL 'circle'
+            OUTLINECOLOR 0 0 0
+            WIDTH $${ecole['border_width']}
+            COLOR $${ecole['color']}
+            SIZE 8
+        END 
+    END
+% endfor
+    #Primaire et collège privé
+    CLASS
+        EXPRESSION (('[typ_fr]' == "Privé") AND ('[et_fr]' == "Primaire, Collège"))
+        MINSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'circle'
+            COLOR 0 0 0
+            SIZE 8
+        END 
+        STYLE
+            SYMBOL 'left-half-circle'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 74 192 40
+            SIZE 4
+            OFFSET -1 0
+        END
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 197 60 33
+            SIZE 4
+            OFFSET 1 0
+        END
+    END 
+    CLASS
+        EXPRESSION (('[typ_fr]' == "Privé") AND ('[et_fr]' == "Primaire, Collège"))
+        MAXSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'circle'
+            COLOR 0 0 0
+            SIZE 16
+        END
+        STYLE
+            SYMBOL 'left-half-circle'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 74 192 40
+            SIZE 12
+            OFFSET -3 0
+        END 
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 197 60 33
+            SIZE 12
+            OFFSET 3 0
+        END 
+    END 
+    CLASS
+        NAME "Primaire, collège - Privé"
+        EXPRESSION (('[typ_fr]' == "Privé") AND ('[et_fr]' == "Primaire, Collège"))
+        STYLE
+            SYMBOL 'circle'
+            COLOR 0 0 0
+            SIZE 12
+        END 
+        STYLE
+            SYMBOL 'left-half-circle'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 74 192 40
+            SIZE 8
+            OFFSET -2 0
+        END 
+        STYLE
+            SYMBOL 'right-half-circle'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 197 60 33
+            SIZE 8
+            OFFSET 2 0
+        END 
+    END 
+    #Primaire, collège et lycée privé
+    CLASS
+        EXPRESSION (('[typ_fr]' == "Privé") AND ('[et_fr]' == "Primaire, Collège, Lycée"))
+        MINSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'circle'
+            COLOR 0 0 0
+            SIZE 6
+        END
+        STYLE
+            SYMBOL 'circle-left-third'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 74 192 40
+            SIZE 4
+            OFFSET -1 0
+        END
+        STYLE
+            SYMBOL 'circle-right-third'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 108 223 254
+            SIZE 4
+            OFFSET 0 0
+        END
+        STYLE
+            SYMBOL 'circle-down-third'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 197 60 33
+            SIZE 5
+            OFFSET 0 0
+        END
+
+    END 
+    CLASS
+        EXPRESSION (('[typ_fr]' == "Privé") AND ('[et_fr]' == "Primaire, Collège, Lycée"))
+        MAXSCALEDENOM 1000000
+        STYLE
+            SYMBOL 'circle'
+            COLOR 0 0 0
+            SIZE 20
+        END
+        STYLE
+            SYMBOL 'circle-left-third'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 74 192 40
+            SIZE 12
+            OFFSET -4 -1
+        END
+        STYLE
+            SYMBOL 'circle-right-third'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 108 223 254
+            SIZE 12
+            OFFSET 0 -1
+        END
+        STYLE
+            SYMBOL 'circle-down-third'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 197 60 33
+            SIZE 16
+            OFFSET 0 0
+        END
+    END 
+    CLASS
+        NAME "Primaire, collège, lycée - Privé"
+        EXPRESSION (('[typ_fr]' == "Privé") AND ('[et_fr]' == "Primaire, Collège, Lycée"))
+        STYLE
+            SYMBOL 'circle'
+            COLOR 0 0 0
+            SIZE 14
+        END
+        STYLE
+            SYMBOL 'circle-left-third'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 74 192 40
+            SIZE 8
+            OFFSET -3 -1
+        END
+        STYLE
+            SYMBOL 'circle-right-third'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 108 223 254
+            SIZE 8
+            OFFSET 0 -1
+        END
+        STYLE
+            SYMBOL 'circle-down-third'
+            OUTLINECOLOR 0 0 0 
+            WIDTH 1
+            COLOR 197 60 33
+            SIZE 10
+            OFFSET 0 0
+        END
+    END 
+END
