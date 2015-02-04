@@ -20,6 +20,7 @@
 /mapserver/*/*.map
 /mapserver/*/*.mako
 /mapserver/ms_error.log
+/demo/locale/*.pot
 /demo/locale/*/LC_MESSAGES/*.mo
 /print/config.yaml
 /demo/static/build/

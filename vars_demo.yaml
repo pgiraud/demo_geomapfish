@@ -6,6 +6,8 @@ vars:
     # database schema
     schema: main
 
+    srid: 3857
+
     # the visible host name
     host: mapfish-geoportal.demo-camptocamp.com
 
