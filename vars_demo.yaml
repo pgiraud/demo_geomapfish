@@ -27,6 +27,9 @@ vars:
     - fr
     - de
 
+    authtkt:
+        timeout: 60
+
     admin_interface:
         # Default values for the admin interface's maps.
         map_x: 740000
@@ -170,3 +173,6 @@ interpreted:
     - facts
     json:
     - facts
+
+update_path:
+- authtkt
