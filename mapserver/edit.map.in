@@ -7,7 +7,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM edit.point) AS foo USING UNIQUE id USING srid=3857"
+    DATA "geometry FROM (SELECT * FROM edit.point) AS foo USING UNIQUE id USING srid=3857"
     LABELITEM "name"
     PROJECTION
       "init=epsg:3857"
@@ -38,7 +38,7 @@ LAYER
         "gml_types" "auto"
         "gml_featureid" "id"
         "gml_geom_type" "point"
-        "gml_geometries" "geom"
+        "gml_geometries" "geometry"
     END
 END
 LAYER
@@ -50,7 +50,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM edit.line) AS foo USING UNIQUE id USING srid=3857"
+    DATA "geometry FROM (SELECT * FROM edit.line) AS foo USING UNIQUE id USING srid=3857"
     LABELITEM "name"
     PROJECTION
       "init=epsg:3857"
@@ -77,7 +77,7 @@ LAYER
         "gml_types" "auto"
         "gml_featureid" "id"
         "gml_geom_type" "line"
-        "gml_geometries" "geom"
+        "gml_geometries" "geometry"
     END
 END
 LAYER
@@ -89,7 +89,7 @@ LAYER
     CONNECTIONTYPE postgis
     PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
     CONNECTION "${mapserver_connection}"
-    DATA "geom FROM (SELECT * FROM edit.polygon) AS foo USING UNIQUE id USING srid=3857"
+    DATA "geometry FROM (SELECT * FROM edit.polygon) AS foo USING UNIQUE id USING srid=3857"
     LABELITEM "name"
     PROJECTION
       "init=epsg:3857"
@@ -121,6 +121,6 @@ LAYER
         "gml_types" "auto"
         "gml_featureid" "id"
         "gml_geom_type" "polygon"
-        "gml_geometries" "geom"
+        "gml_geometries" "geometry"
     END
 END
