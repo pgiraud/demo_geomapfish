@@ -89,6 +89,20 @@ MAP
     INCLUDE "edit.map"
     INCLUDE "private.map"
 
+    # Montpellier
+    INCLUDE "montpellier/administration.map"
+    INCLUDE "montpellier/equipement.map"
+    INCLUDE "montpellier/paysage.map"
+    INCLUDE "montpellier/environnement.map"
+    INCLUDE "montpellier/patrimoine.map"
+    INCLUDE "montpellier/planville.map"
+
+    #CG67
+    INCLUDE "cg67/cadastre.map"
+    INCLUDE "cg67/enseignement.map"
+    INCLUDE "cg67/transport.map"
+    INCLUDE "cg67/administration.map"
+
     LAYER
       NAME "Departements"
       GROUP "plan"
