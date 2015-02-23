@@ -73,7 +73,7 @@ shortener:
   base_url:  http://${vars:host}${vars:apache-entry-point}s/
 
 # For mapserver proxy
-mapserv_url: http://localhost/${vars:instanceid}/mapserv
+mapserv_url: http://localhost/cartouche_clarmont/cartouches_metiers
 
 # For print proxy
 print_url: http://localhost:8080/print-c2cgeoportal-${vars:instanceid}/pdf/

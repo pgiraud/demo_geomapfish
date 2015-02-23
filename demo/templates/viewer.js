@@ -5,9 +5,12 @@ Ext.onReady(function() {
     /*
      * Initialize the application.
      */
+    cgxp.WMS_FEATURE_NS = "http://www.qgis.org/gml";
+    cgxp.LEGEND_INCLUDE_LAYER_NAME = false;
+
     // OpenLayers
     OpenLayers.Number.thousandsSeparator = ' ';
-    OpenLayers.DOTS_PER_INCH = 72;
+    OpenLayers.DOTS_PER_INCH = 2.54 / 100 / 0.00028;
     OpenLayers.ProxyHost = "${request.route_url('ogcproxy')}?url=";
 
     // Ext
