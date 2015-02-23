@@ -70,6 +70,7 @@ LAYER
 
     METADATA
         "wms_title" "${layer['name']}"
+        "ows_srs" "EPSG:4326 EPSG:3857"
 
         "gml_include_items" "all"
         "gml_types" "auto"
@@ -102,6 +103,7 @@ LAYER
 
     METADATA
         "wms_title" "OSM Time"
+        "ows_srs" "EPSG:4326 EPSG:3857"
 
         "gml_include_items" "all"
         "gml_types" "auto"
@@ -141,6 +143,7 @@ LAYER
 
     METADATA
         "wms_title" "OSM Scale"
+        "ows_srs" "EPSG:4326 EPSG:3857"
 
         "gml_include_items" "all"
         "gml_types" "auto"
