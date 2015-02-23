@@ -2,14 +2,14 @@ extends: CONST_vars.yaml
 
 vars:
     # database name
-    db: demo_geomapfish_1_6
+    db: demo_geomapfish_1_6_fr
     # database schema
     schema: main
 
     # the visible host name
     host: geomapfish.demo-camptocamp.com
 
-    srid: 21781
+    srid: 3857
 
     # The application's default language. This is the language used by
     # the application if no specific language is specified in the URLs.
@@ -72,11 +72,8 @@ vars:
     # The "raster web services" configuration. See the "raster"
     # chapter in the integrator documentation.
     raster:
-        srtm:
-            file: /var/sig/SRTM21781/srtm.shp
-            round: 1
-        aster:
-            file: /var/sig/Aster21781/aster.shp
+        mnt:
+            file: /var/sig/raster/MNT250_L93_FRANCE.shp
             round: 1
 
     fulltextsearch:

@@ -319,7 +319,7 @@ Ext.onReady(function() {
             toggleGroup: 'maptools',
             serviceUrl: "${request.route_url('profile.json')}",
             csvServiceUrl: "${request.route_url('profile.csv')}",
-            rasterLayers: ['srtm', 'aster'],
+            rasterLayers: ['mnt'],
             actionConfig: {
                 text: OpenLayers.i18n("Profile")
             }
