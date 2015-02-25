@@ -85,6 +85,30 @@ OpenLayers.Util.extend(OpenLayers.Lang.fr, {
   "numero_de": "Numéro de téléphone",
   "Switzerland": "Suisse",
   "France": "France",
-  "Mexico": "Mexique"
+  "Mexico": "Mexique",
+  
+/**stage**/
+  "batiment_sous-sol": "Bâtiments souterrains",
+  "batiment_sous-sol_num": "Numéros ECA des bâtiments souterrains",
+  "batiment_hors-sol": "Bâtiments hors-sol",
+  "batiment_hors-sol_num": "Numéros ECA des bâtiments hors-sol",
+  "parcelle": "Parcelles",
+  "parcelle_num": "Numéros de parcelle",
+  "limites-communales": "Limites communales",
+  "couverture_sol": "Couverture du sol",
+  "couverture_sol_symbole": "Nomenclature",
+  "point_limite": "Points limites",
+  "lieux-dit": "Lieux dit",
+  "vanne": "Vannes",
+  "deversoir": "Déversoirs",
+  "fontaine": "Fontaines",
+  "grp_services-industriels": "Services industriels",
+  "grp_eau-potable": "Eau potable",
+  "grp_cadastre": "Base cadastrale",
+  "thm_Clarmont": "Commune de Clarmont",
+  "thm_Jourdan": "Communes de Bourg-en-Lavaux, Chexbres, Puidoux et Savigny",
+  "grp_bien-fonds": "Bien-fonds",
+  "grp_parcelle": "Parcelle",
+  "grp_batiments": "Bâtiments"
 });
 
