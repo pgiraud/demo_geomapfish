@@ -1,0 +1,60 @@
+<tinyows online_resource="http://geomapfish.demo-camptocamp.com/sbrunner/tinyows"
+  schema_dir="/usr/share/tinyows/schema/"
+  log="/tmp/to"
+  log_level="15"
+>
+
+  <pg host="127.0.0.1" user="www-data" password="www-data" dbname="demo_geomapfish_1_6" port="5432"/>
+  <!--pg host="127.0.0.1" user="www-data" password="www-data" dbname="test" port="5432"/-->
+
+  <metadata name="TinyOWS Server"
+    title="TinyOWS Server - Demo Service" />
+
+  <contact name="TinyOWS Server"
+    site="http://geomapfish.demo-camptocamp.com/"
+    email="tinyows-users@lists.maptools.org" />
+
+ <layer retrievable="1"
+    writable="1"
+    ns_prefix="tows"
+    ns_uri="http://geomapfish.demo-camptocamp.com/"
+    schema="edit"
+    name="point"
+    title="Point"
+    pkey="id"
+    srid="21781"
+  />
+
+
+  <layer retrievable="1"
+    writable="1"
+    ns_prefix="tows"
+    ns_uri="http://geomapfish.demo-camptocamp.com/"
+    schema="edit"
+    name="line"
+    title="Line"
+    pkey="id"
+    srid="21781"
+  />
+
+  <layer retrievable="1"
+    writable="1"
+    ns_prefix="tows"
+    ns_uri="http://geomapfish.demo-camptocamp.com/"
+    schema="edit"
+    name="polygon"
+    title="Polygon"
+    pkey="id"
+    srid="21781"
+  />
+
+
+  <layer retrievable="1"
+    writable="1"
+    ns_prefix="tows"
+    ns_uri="http://geomapfish.demo-camptocamp.com/"
+    schema="public"
+    name="parks"
+    title="Parks" />
+
+</tinyows>
