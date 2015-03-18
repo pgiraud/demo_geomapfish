@@ -3,7 +3,7 @@
 INSTANCE_ID=1.6
 
 function display_result {
-    CODE=`grep '^HTTP' /tmp/headers | awk '{{print $2}}'`
+    CODE=`grep '^HTTP' /tmp/headers | tail -n 1 | awk '{{print $2}}'`
     CACHE_CONTROL=`grep '^Cache-Control' /tmp/headers | awk -F ': ' '{{print $2}}' | head -c -2`
     CONTENT_TYPE=`grep '^Content-Type' /tmp/headers | awk -F ': ' '{{print $2}}' | head -c -2`
     echo "$CODE: $CACHE_CONTROL / $CONTENT_TYPE"
@@ -23,7 +23,6 @@ function check {
     fi
     if [ "$3" == "FORM" ]
     then
-        echo $4
         CURL_ARGS="$CURL_ARGS $4"
     fi
 
@@ -65,18 +64,14 @@ check FullTextSearch "/wsgi/fulltextsearch?limit=20&query=paud"
 check "FullTextSearch callback" "/wsgi/fulltextsearch?limit=20&query=paud&callback=stcCallback1003"
 check "Raster point" "/wsgi/raster?lon=561030&lat=143010"
 check "Raster point callback" "/wsgi/raster?lon=561030&lat=143010&callback=stcCallback1003"
-FORM='--form layers=SRTM'
-echo ${FORM}
-FORM="${FORM} --form geom={\"type\":\"LineString\",\"coordinates\":[[559570,143590],[560870,142570]]}\""
-echo ${FORM}
+FORM='--form layers=srtm'
+FORM="${FORM} --form geom={\"type\":\"LineString\",\"coordinates\":[[559570,143590],[560870,142570]]}"
 FORM="${FORM} --form nbPoints=100"
-echo ${FORM}
 check "Raster profile" /wsgi/profile.json FORM "${FORM}"
-exit
 check "Raster profile" /wsgi/profile.json?callback=stcCallback1003 FORM "${FORM}"
 check "Main index" /
 check "Main viewer" /wsgi/viewer.js
-check "Theme" /wsgi/theme
+check "Theme" /wsgi/themes
 check "Mobile index" /mobile/
 check "Mobile config.js" /mobile/config.js
 check "api.js" /wsgi/api.js
