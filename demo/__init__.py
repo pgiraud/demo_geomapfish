@@ -27,4 +27,6 @@ def main(global_config, **settings):
     add_interface(config, 'routing')
     add_interface(config, 'mobile', INTERFACE_TYPE_SENCHA_TOUCH)
 
+    config.add_route('file_proxy', '/file_proxy/{layer}/{file}')
+
     return config.make_wsgi_app()
