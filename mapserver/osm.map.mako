@@ -165,6 +165,51 @@ LAYER
 END
 
 LAYER
+    NAME "osm_time2"
+    TYPE POINT
+    STATUS ON
+    TEMPLATE fooOnlyForWMSGetFeatureInfo # For GetFeatureInfo
+    CONNECTIONTYPE postgis
+    PROCESSING "CLOSE_CONNECTION=DEFER" # For performance
+    CONNECTION "user=${dbuser} password=${dbpassword} host=${dbhost} dbname=osm"
+    DATA "geom FROM (SELECT regexp_replace(format(\'%s\', name), \'^$\', osm_id::text) AS display_name,name,osm_id,type,\"timestamp\",geom FROM swiss_points) AS foo USING UNIQUE osm_id USING srid=21781"
+    LABELITEM "name"
+    EXTENT 473743 74095 839000 306400
+    PROJECTION
+        "init=epsg:21781"
+    END
+    CLASS
+        NAME "Dans l'étang"
+        STYLE
+            SYMBOL "circle"
+            SIZE 11
+            WIDTH 1
+            OUTLINECOLOR 0 0 30
+            COLOR 230 0 0
+        END
+        LABEL
+            SIZE 7
+            OFFSET 0 -10
+            PARTIALS FALSE
+        END
+    END
+
+    METADATA
+        "wms_title" "OSM Time"
+
+        "gml_include_items" "all"
+        "gml_types" "auto"
+        "gml_featureid" "osm_id"
+        "gml_POINT_type" "point"
+        "gml_geometries" "POINT"
+        "wfs_enable_request" "*"
+
+        "wms_timeextent" "2006/2014/P1M"
+        "wms_timeitem" "timestamp"
+    END
+END
+
+LAYER
     NAME "osm_scale"
     TYPE POINT
     STATUS ON
