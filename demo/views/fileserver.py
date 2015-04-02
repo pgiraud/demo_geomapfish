@@ -1,6 +1,6 @@
 from pyramid.view import view_config
 from pyramid.response import Response
-from pyramid.httpexceptions import HTTPForbidden
+from pyramid.httpexceptions import HTTPForbidden, HTTPNotFound
 from c2cgeoportal.views.proxy import Proxy
 from c2cgeoportal.lib.filter_capabilities import (
     get_protected_layers,
@@ -31,11 +31,14 @@ class PrintProxy(Proxy):
             {})
         url_prefix = functionalities['file_server_url']
 
-        resp, content = self._proxy('%s/%s/%s' % (url_prefix, layer, file))
-        headers = {}
-        if 'content-type' in resp:
-            headers['content-type'] = resp['content-type']
-        if 'content-disposition' in resp:
-            headers['content-disposition'] = resp['content-disposition']
+        try:
+            resp, content = self._proxy('%s/%s/%s' % (url_prefix, layer, file))
+            headers = {}
+            if 'content-type' in resp:
+                headers['content-type'] = resp['content-type']
+            if 'content-disposition' in resp:
+                headers['content-disposition'] = resp['content-disposition']
 
-        return Response(content, status=resp.status, headers=headers)
+            return Response(content, status=resp.status, headers=headers)
+        except Exception as e:
+            raise HTTPNotFound
