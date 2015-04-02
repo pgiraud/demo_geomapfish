@@ -10,6 +10,25 @@ import logging
 
 log = logging.getLogger(__name__)
 
+"""
+The file_proxy view config can be used to give access to files to user
+depending on their permissions. The layer permission system is used here to
+allow or forbid users to access to the file.
+Files can be put on any server as soon as the current application can have
+access to them. The server on which the files are doesn't need to be internet
+accessible.
+
+A new route needs to be added to `__init__.py` as follows:
+    config.add_route('file_proxy', '/file_proxy/{layer}/{file}')
+
+A new configuration parameter needs to be added to `config.yaml` in the
+functionalities section:
+    file_server_url: http://name.of.server/path/to/files/
+
+Then the files can be retrieved using a URL looking like the following:
+    http://domain.com/instanceid/wsgi/file_proxy/layer_name/file.xxx
+"""
+
 class FileProxy(Proxy):
 
     def __init__(self, request):
