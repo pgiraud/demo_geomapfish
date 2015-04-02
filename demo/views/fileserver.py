@@ -10,7 +10,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
-class PrintProxy(Proxy):
+class FileProxy(Proxy):
 
     def __init__(self, request):
         Proxy.__init__(self, request)
