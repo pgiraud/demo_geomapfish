@@ -8,7 +8,6 @@ endif
 PRINT_VERSION ?= 3
 APACHE_VHOST ?= gmfusrgrp_version2-geomapfishtest
 
-PRINT_INPUT += WEB-INF
 PRINT_REQUIREMENT += print/WEB-INF/classes/mapfish-spring-application-context-override.xml
 
 include CONST_Makefile

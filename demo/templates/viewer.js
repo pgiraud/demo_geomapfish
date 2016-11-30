@@ -324,24 +324,8 @@ Ext.onReady(function() {
                 defaults: {
                     anchor:'100%'
                 },
-                autoFit: true,
-                fieldsExtraClientConfiguration: {
-                    "A4 portrait": {
-                        "title": {
-                            fieldAttributes: {
-                                emptyText: OpenLayers.i18n("title")
-                            }
-                        },
-                        "comments": {
-                            useTextArea: true,
-                            fieldAttributes: {
-                                emptyText: OpenLayers.i18n("comments")
-                            }
-                        }
-                    }
-                }
-            },
-            version: 3
+                autoFit: true
+            }
         },
         {
             ptype: "cgxp_permalink",

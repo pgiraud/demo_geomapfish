@@ -44,8 +44,8 @@ vars:
         # users.
         anonymous:
             print_template:
-            - A4 portrait
-            - A3 portrait
+            - 1 A4 portrait demo
+            - 2 A3 portrait demo
             default_basemap: map
             mobile_default_theme:
 #            location:
@@ -59,10 +59,10 @@ vars:
         # database.
         registered:
             print_template:
-            - A4 portrait
-            - A3 portrait
-            - A4 landscape
-            - A3 landscape
+            - 1 A4 portrait demo
+            - 2 A3 portrait demo
+            - 3 A4 landscape demo
+            - 4 A3 landscape demo
 
         # Functionalities that are made available to Mako templates.
         available_in_templates:
@@ -98,6 +98,14 @@ vars:
     # Checker configuration
     checker:
         fulltextsearch: pau
+        defaults:
+            routes_disable: [printproxy_capabilities]
+            routes:
+            - name: printproxy_info
+            print_template: 1 A4 portrait
+            print_center_lon: 600000
+            print_center_lat: 200000
+            print_scale: 10000
         print_spec:
             layout: "A4 portrait"
             outputFormat: "pdf"
@@ -116,10 +124,8 @@ vars:
                 legend: {}
 
     check_collector:
-        disabled:
-        - checker_printcapabilities
-        - checker_pdf
-        hosts: []
+        # Verify that in the `.build/config.yaml` `checker_pdf3` is present, and not `checker_pdf`.
+        disabled: [checker_pdf3]
 
     reset_password:
         # Used to send a confirmation email
@@ -135,8 +141,11 @@ vars:
             The GeoMapfish team
         smtp_server: smtp.example.com
 
+    print_url: http://localhost:8080/print-{instanceid}/pdf/
+
 update_paths:
 - authtkt
 - checker
+- checker.routes
 - check_collector.hosts
 - admin_interface
